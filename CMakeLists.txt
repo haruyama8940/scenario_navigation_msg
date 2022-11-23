@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(scenario_navigation_msg)
+project(scenario_navigation_msgs)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -9,6 +9,7 @@ project(scenario_navigation_msg)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED
   message_generation
+  std_msgs
 )
 
 ################################################
@@ -37,10 +38,10 @@ add_message_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -73,8 +74,8 @@ add_message_files(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES scenario_navigation_msg
-#  CATKIN_DEPENDS other_catkin_pkg
+ #LIBRARIES ${PROJECT_NAME}
+ CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
 )
 
@@ -85,8 +86,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+  include
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
